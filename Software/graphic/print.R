@@ -1,0 +1,5 @@
+svg(filename = "data.svg", width = 7, height = 4)
+data <- read.csv("data.csv", header=T, sep=';')
+plot(data[,2],data[,1],t="l",col="red",main="Samples",xlab="Time Unit",ylab="Binary Value", yaxt="n",ylim=c(0,2))
+axis(side=2, at=c(0,1),labels=TRUE)
+dev.off()
