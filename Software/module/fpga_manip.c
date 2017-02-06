@@ -349,12 +349,10 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
         //TODO : security flaw HERE
         int i;
+        if(len > 255)
+                len = 255;
         memcpy(message,buffer,len);
-        size_of_message = strlen(message);// store the length of the stored message
-        if(len > size_of_message) {
-                size_of_message = len;
-        }
-        message[size_of_message] = '\0'; // TODO CHECK SIZE
+        message[len]= '\0';
         perform_command(message);
         return len;
 }
